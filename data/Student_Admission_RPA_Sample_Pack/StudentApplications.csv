@@ -1,0 +1,13 @@
+Application_ID,Student_Name,Email,Programme,Qualification,Document_Status,Certificate_File,Application_Status,Officer_Decision,Offer_Status,Student_ID,Test_Scenario
+APP001,Aina Rahman,aina@example.com,Diploma in IT,SIMULATED SPM,Complete,APP001_Academic_Certificate.pdf,Pending,,Not Sent,,Strong result
+APP002,Brandon Lee,brandon@example.com,Diploma in IT,SIMULATED SPM,Complete,APP002_Academic_Certificate.pdf,Pending,,Not Sent,,Below sample math threshold
+APP003,Chong Wei,chong@example.com,Diploma in Business,SIMULATED SPM,Complete,APP003_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP004,Divya Kumar,divya@example.com,Diploma in IT,SIMULATED SPM,Missing,,Pending,,Not Sent,,Missing certificate
+APP005,Ethan Tan,ethan@example.com,Diploma in Business,SIMULATED SPM,Complete,APP005_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP006,Farah Ismail,farah@example.com,Diploma in IT,SIMULATED SPM,Complete,APP006_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP007,Grace Lim,grace@example.com,Diploma in IT,SIMULATED SPM,Complete,APP007_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP008,Harith Omar,harith@example.com,Diploma in Business,SIMULATED SPM,Complete,APP008_Academic_Certificate.pdf,Pending,,Not Sent,,Below sample credit threshold
+APP009,Ivy Wong,ivy@example.com,Diploma in IT,SIMULATED SPM,Complete,APP009_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP010,Jason Goh,jason@example.com,Diploma in Business,SIMULATED SPM,Complete,APP010_Academic_Certificate.pdf,Pending,,Not Sent,,Eligible
+APP011,Kavitha Nair,kavitha@example.com,Diploma in IT,SIMULATED SPM,Complete,APP011_Academic_Certificate.pdf,Pending,,Not Sent,,Duplicate application email
+APP012,Kavitha Nair,kavitha@example.com,Diploma in IT,SIMULATED SPM,Complete,APP012_Academic_Certificate.pdf,Pending,,Not Sent,,Duplicate application email
