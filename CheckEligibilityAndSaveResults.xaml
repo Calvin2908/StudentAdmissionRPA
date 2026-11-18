@@ -1,7 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CheckEligibilityAndSaveResults" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<?xml version='1.0' encoding='utf-8'?>
+<Activity xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="sap sap2010" x:Class="CheckEligibilityAndSaveResults">
   <x:Members>
-    <x:Property Name="out_dtResults" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="in_dtStudents" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="out_dtResults" Type="OutArgument(sd:DataTable)"/>
+    <x:Property Name="in_dtStudents" Type="InArgument(sd:DataTable)"/>
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -107,27 +108,27 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CheckEligibilityAndSaveResults" sap:VirtualizedContainerService.HintSize="1770,5472" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="STUDENT ADMISSION | Screen Diploma and Degree Applicants" sap:VirtualizedContainerService.HintSize="1770,6054" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Boolean" Name="mathPass" />
-      <Variable x:TypeArguments="x:String" Name="uecMathGrade" />
-      <Variable x:TypeArguments="x:Int32" Name="spmCredits" />
-      <Variable x:TypeArguments="x:String" Name="mathGrade" />
-      <Variable x:TypeArguments="x:String" Name="cgpaText" />
-      <Variable x:TypeArguments="x:String" Name="detectedQualification" />
-      <Variable x:TypeArguments="x:String" Name="ocrText" />
-      <Variable x:TypeArguments="x:String" Name="selectedQualification" />
-      <Variable x:TypeArguments="x:String" Name="selectedProgramme" />
-      <Variable x:TypeArguments="x:String" Name="eligibilityReason" />
-      <Variable x:TypeArguments="x:String" Name="eligibilityStatus" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtResults" />
+      <Variable x:TypeArguments="x:Boolean" Name="mathPass"/>
+      <Variable x:TypeArguments="x:String" Name="uecMathGrade"/>
+      <Variable x:TypeArguments="x:Int32" Name="spmCredits"/>
+      <Variable x:TypeArguments="x:String" Name="mathGrade"/>
+      <Variable x:TypeArguments="x:String" Name="cgpaText"/>
+      <Variable x:TypeArguments="x:String" Name="detectedQualification"/>
+      <Variable x:TypeArguments="x:String" Name="ocrText"/>
+      <Variable x:TypeArguments="x:String" Name="selectedQualification"/>
+      <Variable x:TypeArguments="x:String" Name="selectedProgramme"/>
+      <Variable x:TypeArguments="x:String" Name="eligibilityReason"/>
+      <Variable x:TypeArguments="x:String" Name="eligibilityStatus"/>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtResults"/>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="01 | Copy Applications Into Results Table" sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">
           <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">dtResults</CSharpReference>
@@ -139,33 +140,57 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Eligibility Status" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="560,221" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3">
+    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" Unique="{x:Null}" ColumnName="Eligibility Status" DisplayName="02 | Create Eligibility Status Column" sap:VirtualizedContainerService.HintSize="560,221" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" MaxLength="-1">
       <ui:AddDataColumn.DataTable>
         <InArgument x:TypeArguments="sd:DataTable">
           <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">dtResults</CSharpValue>
         </InArgument>
       </ui:AddDataColumn.DataTable>
     </ui:AddDataColumn>
-    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Eligibility Reason" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="560,221" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4">
+    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" Unique="{x:Null}" ColumnName="Eligibility Reason" DisplayName="03 | Create Eligibility Reason Column" sap:VirtualizedContainerService.HintSize="560,221" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" MaxLength="-1">
       <ui:AddDataColumn.DataTable>
         <InArgument x:TypeArguments="sd:DataTable">
           <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">dtResults</CSharpValue>
         </InArgument>
       </ui:AddDataColumn.DataTable>
     </ui:AddDataColumn>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,4666" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <Assign DisplayName="04 | Allow Full Eligibility Reason Text" sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="Assign_FixReasonLength">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">
+          <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_27">dtResults.Columns["Eligibility Reason"].MaxLength</CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">
+          <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_46">-1</CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="05 | Allow Full Eligibility Status Text" sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="Assign_FixStatusLength">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">
+          <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_28">dtResults.Columns["Eligibility Status"].MaxLength</CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">
+          <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_47">-1</CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="Check Every Student Application" sap:VirtualizedContainerService.HintSize="560,4898" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow"/>
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="558,4484" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="For Each Student | Validate Documents and Academic Eligibility" sap:VirtualizedContainerService.HintSize="558,4716" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign DisplayName="05 | Reset Eligibility Status" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">
                   <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">eligibilityStatus</CSharpReference>
@@ -177,7 +202,7 @@
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign DisplayName="06 | Reset Eligibility Reason" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">
                   <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">eligibilityReason</CSharpReference>
@@ -189,7 +214,7 @@
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_22">
+            <Assign DisplayName="07 | Reset UEC Mathematics Grade" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_22">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">
                   <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_23">uecMathGrade</CSharpReference>
@@ -201,20 +226,20 @@
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <If sap:VirtualizedContainerService.HintSize="524,3558" sap2010:WorkflowViewState.IdRef="If_1">
+            <If DisplayName="08 | Supporting Document OCR Completed?" sap:VirtualizedContainerService.HintSize="524,3615" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Condition>
                 <InArgument x:TypeArguments="x:Boolean">
                   <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">CurrentRow["Document Status"].ToString().Trim().Equals("OCR Completed", StringComparison.OrdinalIgnoreCase)</CSharpValue>
                 </InArgument>
               </If.Condition>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="522,2986" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="522,3043" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+                  <Assign DisplayName="09 | Read Preferred Programme for Selected Level" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_8">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">selectedProgramme</CSharpReference>
@@ -228,7 +253,7 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign DisplayName="10 | Read Selected Academic Qualification" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">selectedQualification</CSharpReference>
@@ -242,7 +267,7 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+                  <Assign DisplayName="11 | Get OCR Certificate Text" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_10">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">ocrText</CSharpReference>
@@ -254,20 +279,20 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <If sap:VirtualizedContainerService.HintSize="488,2401" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If DisplayName="12 | Certificate OCR Text Available?" sap:VirtualizedContainerService.HintSize="488,2458" sap2010:WorkflowViewState.IdRef="If_2">
                     <If.Condition>
                       <InArgument x:TypeArguments="x:Boolean">
                         <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">!string.IsNullOrWhiteSpace(ocrText)</CSharpValue>
                       </InArgument>
                     </If.Condition>
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1838" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1895" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_13">
+                        <Assign DisplayName="13 | Detect Academic Qualification from Certificate" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_13">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">
                               <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">detectedQualification</CSharpReference>
@@ -282,7 +307,7 @@
                             </InArgument>
                           </Assign.Value>
                         </Assign>
-                        <If sap:VirtualizedContainerService.HintSize="452,1603" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If DisplayName="14 | Uploaded Qualification Matches Application?" sap:VirtualizedContainerService.HintSize="452,1660" sap2010:WorkflowViewState.IdRef="If_3">
                           <If.Condition>
                             <InArgument x:TypeArguments="x:Boolean">
                               <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20" xml:space="preserve">detectedQualification.Equals(
@@ -302,13 +327,13 @@
                             </InArgument>
                           </If.Condition>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,1040" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,1097" sap2010:WorkflowViewState.IdRef="Sequence_9">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_16">
+                              <Assign DisplayName="15 | Extract CGPA from OCR" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_16">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">
                                     <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_16">cgpaText</CSharpReference>
@@ -323,7 +348,7 @@
                                   </InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+                              <ui:LogMessage DisplayName="Log | Certificate Qualification and CGPA" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
                                 <ui:LogMessage.Message>
                                   <InArgument x:TypeArguments="x:Object">
                                     <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24" xml:space="preserve">"Student: " + CurrentRow["Full Name (as per IC/Passport)"].ToString()
@@ -332,7 +357,7 @@
                                   </InArgument>
                                 </ui:LogMessage.Message>
                               </ui:LogMessage>
-                              <If sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_4">
+                              <If DisplayName="16 | Is SPM Certificate?" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_4">
                                 <If.Condition>
                                   <InArgument x:TypeArguments="x:Boolean">
                                     <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_34">detectedQualification.Trim().Equals("SPM", StringComparison.OrdinalIgnoreCase)</CSharpValue>
@@ -351,7 +376,7 @@
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                    <Assign DisplayName="17 | Count SPM Credit Grades" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_18">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="x:Int32">
                                           <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_20">spmCredits</CSharpReference>
@@ -361,7 +386,7 @@
                                         <InArgument x:TypeArguments="x:Int32">
                                           <CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33" xml:space="preserve">System.Text.RegularExpressions.Regex.Matches(
     ocrText,
-    @"(?im)^\s*(?:Bahasa Melayu|English|Mathematics|Additional Mathematics|Science|History)\s+(?:A\+|A-|A|B\+|B-|B|C\+|C-?|Cc)\s*$"
+    @"(?im)^\s*(?:Bahasa Melayu|English|Mathematics|Additional Mathematics|Science|History)\s+(?:A\+|A-|A|B\+|B-|B|C\+|C)\s*$"
 ).Count</CSharpValue>
                                         </InArgument>
                                       </Assign.Value>
@@ -375,7 +400,7 @@
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                    <Assign DisplayName="17 | Set SPM Credits to Zero for Non-SPM" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_20">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="x:Int32">
                                           <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_21">spmCredits</CSharpReference>
@@ -390,7 +415,7 @@
                                   </Sequence>
                                 </If.Else>
                               </If>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_19">
+                              <Assign DisplayName="18 | Extract SPM Mathematics Grade" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_19">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">
                                     <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_19">mathGrade</CSharpReference>
@@ -405,7 +430,7 @@
                                   </InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_5">
+                              <If DisplayName="19 | Is UEC Certificate?" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_5">
                                 <If.Condition>
                                   <InArgument x:TypeArguments="x:Boolean">
                                     <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">detectedQualification.Trim().Equals("UEC", StringComparison.OrdinalIgnoreCase)</CSharpValue>
@@ -418,13 +443,25 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
-                                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,751" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,926" sap2010:WorkflowViewState.IdRef="Sequence_14">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                    <Assign DisplayName="20A | Correct UEC OCR Grade Confusion (Al / AI to A1)" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">
+                                          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_25">ocrText</CSharpReference>
+                                        </OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_44">System.Text.RegularExpressions.Regex.Replace(ocrText, @"(?im)^([ \t]*(?:Chinese|English|Mathematics|Advanced Mathematics|Physics|Chemistry|Biology|Additional Mathematics|Bahasa Melayu|Malay|History|Science|Accounting|Economics|Business Studies)[ \t]+)([A-C])([lI|])(?=[ \t]*\r?$)", "${1}${2}1")</CSharpValue>
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign DisplayName="20 | Extract UEC Mathematics Grade" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_21">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="x:String">
                                           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_22">uecMathGrade</CSharpReference>
@@ -432,26 +469,23 @@
                                       </Assign.To>
                                       <Assign.Value>
                                         <InArgument x:TypeArguments="x:String">
-                                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_41" xml:space="preserve">System.Text.RegularExpressions.Regex.Match(
-    ocrText,
-    @"(?im)^[ \t]*Mathematics[ \t]+([A-C][1-9lI])[ \t]*\r?$"
-).Groups[1].Value.Trim().ToUpper()</CSharpValue>
+                                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_41">System.Text.RegularExpressions.Regex.Match(ocrText, @"(?im)^[ \t]*Mathematics[ \t]+(A1|A2|B3|B4|B5|B6|C7|C8|C9|[A-C][lI])[ \t]*\r?$").Groups[1].Value.Trim().ToUpperInvariant()</CSharpValue>
                                         </InArgument>
                                       </Assign.Value>
                                     </Assign>
-                                    <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                    <Assign DisplayName="21 | Normalize OCR Grade Characters" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_26">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="x:String">
-                                          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_25">uecMathGrade</CSharpReference>
+                                          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_29">uecMathGrade</CSharpReference>
                                         </OutArgument>
                                       </Assign.To>
                                       <Assign.Value>
                                         <InArgument x:TypeArguments="x:String">
-                                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_44">uecMathGrade.Replace("AL", "A1").Replace("AI", "A1")</CSharpValue>
+                                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_48">uecMathGrade.Replace("AL", "A1").Replace("AI", "A1")</CSharpValue>
                                         </InArgument>
                                       </Assign.Value>
                                     </Assign>
-                                    <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                    <Assign DisplayName="22 | Set Mathematics Grade from UEC" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_23">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="x:String">
                                           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_24">mathGrade</CSharpReference>
@@ -463,7 +497,7 @@
                                         </InArgument>
                                       </Assign.Value>
                                     </Assign>
-                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info">
+                                    <ui:LogMessage DisplayName="Log | UEC Mathematics Result" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info">
                                       <ui:LogMessage.Message>
                                         <InArgument x:TypeArguments="x:Object">
                                           <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_39" xml:space="preserve">"Student: " + CurrentRow["Full Name (as per IC/Passport)"].ToString()
@@ -484,7 +518,7 @@
                                   </Sequence>
                                 </If.Else>
                               </If>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info">
+                              <ui:LogMessage DisplayName="Log | SPM Credit Count and Mathematics" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info">
                                 <ui:LogMessage.Message>
                                   <InArgument x:TypeArguments="x:Object">
                                     <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_30" xml:space="preserve">"Student: " + CurrentRow["Full Name (as per IC/Passport)"].ToString()
@@ -494,7 +528,7 @@
                                   </InArgument>
                                 </ui:LogMessage.Message>
                               </ui:LogMessage>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_25">
+                              <Assign DisplayName="23| Verify Mathematics Credit" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_25">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:Boolean">
                                     <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_26">mathPass</CSharpReference>
@@ -502,11 +536,454 @@
                                 </Assign.To>
                                 <Assign.Value>
                                   <InArgument x:TypeArguments="x:Boolean">
-                                    <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_45" xml:space="preserve">new[] { "A+", "A", "A-", "B+", "B", "B-", "C+", "C" }
-    .Contains(mathGrade.Trim().ToUpper())</CSharpValue>
+                                    <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_45">detectedQualification.Equals("UEC", StringComparison.OrdinalIgnoreCase) ? new[] { "A1", "A2", "B3", "B4", "B5", "B6" }.Contains(mathGrade.Trim().ToUpperInvariant()) : new[] { "A+", "A", "A-", "B+", "B", "B-", "C+", "C" }.Contains(mathGrade.Trim().ToUpperInvariant())</CSharpValue>
                                   </InArgument>
                                 </Assign.Value>
                               </Assign>
+                              <If DisplayName="Diploma | SPM Qualification?" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_12">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_49">CurrentRow["Programme Level"].ToString().Trim().Equals("Diploma", StringComparison.OrdinalIgnoreCase) &amp;&amp; detectedQualification.Equals("SPM", StringComparison.OrdinalIgnoreCase)</CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence DisplayName="YES | 24 | Diploma Application With SPM Qualification?" sap:VirtualizedContainerService.HintSize="486,1024" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If DisplayName="25 | Diploma SPM Eligibility: 3 Credits and Maths Credit?" sap:VirtualizedContainerService.HintSize="452,964" sap2010:WorkflowViewState.IdRef="If_6">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_50">spmCredits &gt;= 3 &amp;&amp; mathPass</CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence DisplayName="YES | 25 | Diploma SPM Eligibility: 3 Credits and Maths Credit?" sap:VirtualizedContainerService.HintSize="450,401" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign DisplayName="Set Status | Eligible for Initial Screening" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_30">eligibilityStatus</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_51">"Eligible"</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Set Reason | Verified SPM Minimum" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_31">eligibilityReason</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_52">"Demo diploma rule met: at least 3 recognizable SPM credits and Mathematics credit. Verify against approved programme-specific policy."</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <If DisplayName="26 | Verified SPM Results Below Minimum?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_601"><If.Condition><InArgument x:TypeArguments="x:Boolean"><CSharpValue x:TypeArguments="x:Boolean">System.Text.RegularExpressions.Regex.Matches(
+    ocrText,
+    @"(?im)^\s*(?:Bahasa Melayu|English|Mathematics|Additional Mathematics|Science|History)\s+(?:A\+|A-|A|B\+|B-|B|C\+|C|D\+|D|E|G)\s*$"
+).Count &gt;= 5
+&amp;&amp;
+!string.IsNullOrWhiteSpace(mathGrade)
+&amp;&amp;
+(spmCredits &lt; 3 || !mathPass)</CSharpValue></InArgument></If.Condition><If.Then><Sequence DisplayName="YES | 26 | Verified SPM Results Below Minimum?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_602"><Assign DisplayName="Set Status | Rejected" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_603">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_604">eligibilityStatus</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_605">"Rejected"</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign DisplayName="Set Reason | Verified Academic Requirement Not Met" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_606">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_607">eligibilityReason</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_608">"Verified SPM results do not meet the demo minimum of 3 credits including Mathematics. Screening outcome: Rejected; confirm with the approved programme admission criteria."</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                          </Sequence></If.Then><If.Else><Sequence DisplayName="NO | 26 | Verified SPM Results Below Minimum? | Keep Manual Review When Uncertain" sap:VirtualizedContainerService.HintSize="450,401" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign DisplayName="Set Status | Manual Review" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">eligibilityStatus</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_53">"Manual Review"</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Set Reason | Academic Grades Need Review" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">eligibilityReason</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_54">"Unable to verify at least 3 SPM credits and Mathematics credit from OCR."</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Else></If></If.Else>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Degree Admission Screening" sap:VirtualizedContainerService.HintSize="486,108" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If DisplayName="Degree | Is Bachelor Degree Application?" sap:VirtualizedContainerService.HintSize="452,48" sap2010:WorkflowViewState.IdRef="If_11">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_55">CurrentRow["Programme Level"].ToString().Trim().Equals("Bachelor’s Degree", StringComparison.OrdinalIgnoreCase) || CurrentRow["Programme Level"].ToString().Trim().Equals("Bachelor's Degree", StringComparison.OrdinalIgnoreCase) || CurrentRow["Programme Level"].ToString().Trim().Equals("Degree", StringComparison.OrdinalIgnoreCase)</CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence DisplayName="YES | Degree | Is Bachelor Degree Application?" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If DisplayName="Degree | Which Recognized Qualification?" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_10">
+                                            <If.Condition>
+                                              <InArgument x:TypeArguments="x:Boolean">
+                                                <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_56">detectedQualification.Equals("UEC", StringComparison.OrdinalIgnoreCase)</CSharpValue>
+                                              </InArgument>
+                                            </If.Condition>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <Sequence DisplayName="YES | Degree | Which Recognized Qualification?" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                                <If DisplayName="Degree UEC | At Least 5 Credits Including Mathematics?" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_7">
+                                                  <If.Condition>
+                                                    <InArgument x:TypeArguments="x:Boolean">
+                                                      <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_57">System.Text.RegularExpressions.Regex.Matches(ocrText, @"(?im)^[ \t]*(?:Chinese|English|Mathematics|Advanced Mathematics|Physics|Chemistry|Biology|Additional Mathematics|Bahasa Melayu|Malay|History|Science|Accounting|Economics|Business Studies)[ \t]+(?:A1|A2|B3|B4|B5|B6)[ \t]*\r?$").Count &gt;= 5 &amp;&amp; mathPass</CSharpValue>
+                                                    </InArgument>
+                                                  </If.Condition>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <Sequence DisplayName="YES | Degree UEC | At Least 5 Credits Including Mathematics?" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                                      <Assign DisplayName="Degree UEC Passed | Set Screening Status" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:String">
+                                                            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">eligibilityStatus</CSharpReference>
+                                                          </OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:String">
+                                                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">"Eligible"</CSharpValue>
+                                                          </InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                      <Assign DisplayName="Degree UEC Passed | Record Screening Reason" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_32">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:String">
+                                                            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_35">eligibilityReason</CSharpReference>
+                                                          </OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:String">
+                                                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">"Demo degree initial screening: at least five recognizable UEC credits including Mathematics; confirm programme-specific admission criteria."</CSharpValue>
+                                                          </InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                    </Sequence>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <If DisplayName="Degree UEC | Verified Results Below Minimum?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_609"><If.Condition><InArgument x:TypeArguments="x:Boolean"><CSharpValue x:TypeArguments="x:Boolean">System.Text.RegularExpressions.Regex.Matches(
+    ocrText,
+    @"(?im)^[ \t]*(?:Chinese|English|Mathematics|Advanced Mathematics|Physics|Chemistry|Biology|Additional Mathematics|Bahasa Melayu|Malay|History|Science|Accounting|Economics|Business Studies)[ \t]+(?:A1|A2|B3|B4|B5|B6|C7|C8|C9)[ \t]*\r?$"
+).Count &gt;= 5
+&amp;&amp;
+!string.IsNullOrWhiteSpace(uecMathGrade)
+&amp;&amp;
+(
+    System.Text.RegularExpressions.Regex.Matches(
+        ocrText,
+        @"(?im)^[ \t]*(?:Chinese|English|Mathematics|Advanced Mathematics|Physics|Chemistry|Biology|Additional Mathematics|Bahasa Melayu|Malay|History|Science|Accounting|Economics|Business Studies)[ \t]+(?:A1|A2|B3|B4|B5|B6)[ \t]*\r?$"
+    ).Count &lt; 5
+    || !mathPass
+)</CSharpValue></InArgument></If.Condition><If.Then><Sequence DisplayName="YES | Degree UEC | Verified Results Below Minimum?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_610"><Assign DisplayName="Set Status | Rejected" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_611">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_612">eligibilityStatus</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_613">"Rejected"</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign DisplayName="Set Reason | Verified Academic Requirement Not Met" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_614">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_615">eligibilityReason</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_616">"Verified UEC results do not meet the demo minimum of 5 credits including Mathematics. Screening outcome: Rejected; confirm with the approved programme admission criteria."</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                          </Sequence></If.Then><If.Else><Sequence DisplayName="NO | Degree UEC | Verified Results Below Minimum? | Keep Manual Review When Uncertain" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                                      <Assign DisplayName="Degree UEC Not Verified | Set Screening Status" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:String">
+                                                            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_36">eligibilityStatus</CSharpReference>
+                                                          </OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:String">
+                                                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_60">"Manual Review"</CSharpValue>
+                                                          </InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                      <Assign DisplayName="Degree UEC Not Verified | Record Screening Reason" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:String">
+                                                            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_37">eligibilityReason</CSharpReference>
+                                                          </OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:String">
+                                                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">"Unable to confirm five UEC credit grades including Mathematics from OCR."</CSharpValue>
+                                                          </InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                    </Sequence>
+                                                  </If.Else></If></If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Sequence DisplayName="NO | Degree | Which Recognized Qualification?" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                                <If DisplayName="Degree | STPM, Foundation, Matriculation or Diploma?" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_9">
+                                                  <If.Condition>
+                                                    <InArgument x:TypeArguments="x:Boolean">
+                                                      <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">new[] { "STPM", "Foundation", "Matriculation", "Diploma" }.Contains(detectedQualification.Trim(), StringComparer.OrdinalIgnoreCase)</CSharpValue>
+                                                    </InArgument>
+                                                  </If.Condition>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <Sequence DisplayName="YES | Degree | STPM, Foundation, Matriculation or Diploma?" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                                      <If DisplayName="Degree | Verified CGPA at Least 2.00?" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_8">
+                                                        <If.Condition>
+                                                          <InArgument x:TypeArguments="x:Boolean">
+                                                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_63">System.Text.RegularExpressions.Regex.IsMatch(cgpaText, @"^[0-4](?:\.\d{1,2})?$") &amp;&amp; System.Double.Parse(cgpaText, System.Globalization.CultureInfo.InvariantCulture) &gt;= 2.00</CSharpValue>
+                                                          </InArgument>
+                                                        </If.Condition>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <If.Then>
+                                                          <Sequence DisplayName="YES | Degree | Verified CGPA at Least 2.00?" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                            <Assign DisplayName="Degree CGPA Passed | Set Screening Status" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_38">eligibilityStatus</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_64">"Eligible"</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign DisplayName="Degree CGPA Passed | Record Screening Reason" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_39">eligibilityReason</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_65">"Demo degree initial screening: recognized qualification and OCR CGPA at least 2.00; final admission is subject to official programme requirements."</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                          </Sequence>
+                                                        </If.Then>
+                                                        <If.Else>
+                                                          <If DisplayName="Degree CGPA | Verified Below 2.00?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_617"><If.Condition><InArgument x:TypeArguments="x:Boolean"><CSharpValue x:TypeArguments="x:Boolean">System.Text.RegularExpressions.Regex.IsMatch(
+    cgpaText,
+    @"^[0-4](?:\.\d{1,2})?$"
+)
+&amp;&amp;
+System.Double.Parse(
+    cgpaText,
+    System.Globalization.CultureInfo.InvariantCulture
+) &lt; 2.00</CSharpValue></InArgument></If.Condition><If.Then><Sequence DisplayName="YES | Degree CGPA | Verified Below 2.00?" sap2010:WorkflowViewState.IdRef="EligibilityPatch_618"><Assign DisplayName="Set Status | Rejected" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_619">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_620">eligibilityStatus</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_621">"Rejected"</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign DisplayName="Set Reason | Verified Academic Requirement Not Met" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="EligibilityPatch_622">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_623">eligibilityReason</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="EligibilityPatch_624">"Verified CGPA is below the demo minimum of 2.00. Screening outcome: Rejected; confirm with the approved programme admission criteria."</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                          </Sequence></If.Then><If.Else><Sequence DisplayName="NO | Degree CGPA | Verified Below 2.00? | Keep Manual Review When Uncertain" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                                            <Assign DisplayName="Degree CGPA Not Verified | Set Screening Status" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_40">eligibilityStatus</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">"Manual Review"</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign DisplayName="Degree CGPA Not Verified | Record Screening Reason" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_38">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">
+                                                                  <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_41">eligibilityReason</CSharpReference>
+                                                                </OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">
+                                                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">"CGPA is missing or does not meet the example threshold; verify against the programme requirements."</CSharpValue>
+                                                                </InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                          </Sequence>
+                                                        </If.Else></If></If.Else>
+                                                      </If>
+                                                    </Sequence>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Sequence DisplayName="NO | Degree | STPM, Foundation, Matriculation or Diploma?" sap2010:WorkflowViewState.IdRef="Sequence_25"/>
+                                                  </If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence DisplayName="NO | Degree | Is Bachelor Degree Application?" sap:VirtualizedContainerService.HintSize="450,401" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign DisplayName="Other Pathway | Set Screening Status" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_39">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_42">eligibilityStatus</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">"Manual Review"</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Other Pathway | Record Screening Reason" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_40">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">
+                                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_43">eligibilityReason</CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_69">"The selected programme and qualification require admissions officer verification."</CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
                             </Sequence>
                           </If.Then>
                           <If.Else>
@@ -516,7 +993,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_14">
+                              <Assign DisplayName="26 | Flag Qualification Mismatch" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_14">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">
                                     <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_14">eligibilityStatus</CSharpReference>
@@ -528,7 +1005,7 @@
                                   </InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_15">
+                              <Assign DisplayName="27 | Explain Qualification Mismatch" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_15">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">
                                     <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_15">eligibilityReason</CSharpReference>
@@ -552,7 +1029,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+                        <Assign DisplayName="28 | Flag Missing OCR Text" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_11">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">
                               <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">eligibilityStatus</CSharpReference>
@@ -564,7 +1041,7 @@
                             </InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_12">
+                        <Assign DisplayName="29 | Explain Missing OCR Text" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_12">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">
                               <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">eligibilityReason</CSharpReference>
@@ -588,7 +1065,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign DisplayName="30 | Flag Pending Documents" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_4">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">eligibilityStatus</CSharpReference>
@@ -600,7 +1077,7 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign DisplayName="31 | Explain Pending Documents" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="Assign_5">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">eligibilityReason</CSharpReference>
@@ -615,7 +1092,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign DisplayName="32 | Write Eligibility Status into Row" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_6">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">
                   <CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">CurrentRow["Eligibility Status"]</CSharpReference>
@@ -627,7 +1104,7 @@
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="524,166" sap2010:WorkflowViewState.IdRef="Assign_7">
+            <Assign DisplayName="33 | Write Eligibility Reason into Row" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_7">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">
                   <CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">CurrentRow["Eligibility Reason"]</CSharpReference>
@@ -636,6 +1113,38 @@
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Object">
                   <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">eligibilityReason</CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="34 | Save Only Relevant Academic OCR Text to Results" sap:VirtualizedContainerService.HintSize="524,166" sap2010:WorkflowViewState.IdRef="Assign_41">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">
+                  <CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_44">CurrentRow["OCR Text"]</CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">
+                  <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_70" xml:space="preserve">string.Join(
+    Environment.NewLine,
+    (ocrText ?? "")
+        .Split(new[] { "\r\n", "\n", "\r" },
+            StringSplitOptions.RemoveEmptyEntries)
+        .Select(line =&gt; line.Trim())
+        .Where(line =&gt;
+            System.Text.RegularExpressions.Regex.IsMatch(
+                line,
+                @"^(?:Qualification\s*:|RESULT SUMMARY\s*:|CGPA\s*:)",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            )
+            ||
+            System.Text.RegularExpressions.Regex.IsMatch(
+                line,
+                @"^[A-Za-z][A-Za-z0-9 &amp;/()'\-]{2,70}\s+(?:A1|A2|B3|B4|B5|B6|C7|C8|A\+|A-|A|B\+|B-|B|C\+|C-|C|D|E|F|G)$",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            )
+        )
+        .Distinct()
+)</CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>
@@ -648,7 +1157,7 @@
         </InArgument>
       </ui:ForEachRow.DataTable>
     </ui:ForEachRow>
-    <Assign sap:VirtualizedContainerService.HintSize="560,166" sap2010:WorkflowViewState.IdRef="Assign_17">
+    <Assign DisplayName="35 | Return Results" sap:VirtualizedContainerService.HintSize="560,166" sap2010:WorkflowViewState.IdRef="Assign_17">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">
           <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">out_dtResults</CSharpReference>

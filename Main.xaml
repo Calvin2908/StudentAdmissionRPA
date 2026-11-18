@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugsm="clr-namespace:UiPath.GSuite.Sheets.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -58,6 +58,13 @@
       <x:String>UiPath.Mail.SMTP.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
       <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.GSuite.Activities.Drive.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,6 +152,8 @@
       <AssemblyReference>Studio.Generated.TypedDataTable1</AssemblyReference>
       <AssemblyReference>Studio.Generated.TypedDataTable2</AssemblyReference>
       <AssemblyReference>Studio.Generated.TypedDataTable3</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -153,17 +162,22 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1776,879.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1672,3713" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtResults" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtStudents" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtExistingNotifications" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtNewNotifications" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtExistingResults" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtNewResults" />
+      <Variable x:TypeArguments="sd:DataRow" Name="newResultRow" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ReadApplicationsAndCheckDocuments - Invoke Workflow File (ReadApplicationsAndCheckDocuments.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReadApplicationsAndCheckDocuments.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ReadApplicationsAndCheckDocuments - Invoke Workflow File (ReadApplicationsAndCheckDocuments.xaml)" sap:VirtualizedContainerService.HintSize="488,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReadApplicationsAndCheckDocuments.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtDocuments" />
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtStudents">
@@ -172,7 +186,7 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_CertificateFolder">data\Academic_Certificates</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckEligibilityAndSaveResults - Invoke Workflow File (CheckEligibilityAndSaveResults.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CheckEligibilityAndSaveResults.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckEligibilityAndSaveResults - Invoke Workflow File (CheckEligibilityAndSaveResults.xaml)" sap:VirtualizedContainerService.HintSize="488,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CheckEligibilityAndSaveResults.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtResults">
           <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_29">dtResults</CSharpReference>
@@ -182,7 +196,316 @@
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info">
+    <uga:GSuiteApplicationScope ApiKey="{x:Null}" BrowserItemFriendlyName="{x:Null}" BrowserItemFullPath="{x:Null}" BrowserItemId="{x:Null}" BrowserParentItemId="{x:Null}" BrowserRuntimeItemFriendlyName="{x:Null}" BrowserRuntimeItemFullPath="{x:Null}" BrowserRuntimeItemId="{x:Null}" BrowserRuntimeParentItemId="{x:Null}" BucketId="{x:Null}" BucketName="{x:Null}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" Connector="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" ManualRuntimeItemFullPath="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" TimeoutMS="{x:Null}" UserEmail="{x:Null}" Account="calvin290801@gmail.com" AuthenticationType="OAuthClientID" BucketInputMode="Browse" ConfigLocation="PropertiesPanel" DataStoreLocation="DISK" DisplayName="Google Workspace Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="488,3170" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyType="JSON" OAuthClient="UIPATH" Password="notasecret" RuntimeItemInputMode="Browse" Services="Unselected" UseConnectionService="False" User="E1CB57FA">
+      <uga:GSuiteApplicationScope.AuthenticationScopes>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </uga:GSuiteApplicationScope.AuthenticationScopes>
+      <uga:GSuiteApplicationScope.AuthenticationTypeBackup>
+        <usau:BackupSlot x:TypeArguments="ugae:GoogleAuthenticationType" StoredValue="{x:Null}">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="ugae:GoogleAuthenticationType, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </uga:GSuiteApplicationScope.AuthenticationTypeBackup>
+      <uga:GSuiteApplicationScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="GSuiteScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,2934" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uga:ReadRangeConnections x:TypeArguments="sd:DataTable" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="03 | Read Existing AdmissionResults" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_ExistingResults_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="AdmissionResults!A1:S10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
+              <uga:ReadRangeConnections.FileIdBackup>
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UrlOrId">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                      <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
+                      <InArgument x:TypeArguments="x:String" />
+                      <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                    </scg:List>
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:ReadRangeConnections.FileIdBackup>
+              <uga:ReadRangeConnections.Item>
+                <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID0}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="eyJPQXV0aDJBcHBEYXRhIjp7IkNsaWVudElkIjoiIiwiQ2xpZW50U2VjcmV0IjoiIn0sIlNjb3BlcyI6WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2RyaXZlIl0sIlVzZXJJZCI6IkUxQ0I1N0ZBIiwiRW1haWxBZGRyZXNzIjpudWxsLCJBY2NvdW50IjoiY2FsdmluMjkwODAxQGdtYWlsLmNvbSIsIlN0b3JhZ2UiOnsiTG9jYWxGb2xkZXIiOiJHU3VpdGUiLCJPcmNoZXN0cmF0b3JGb2xkZXIiOiIiLCJMb2NhdGlvbiI6MH19" FullPathHint="My Drive/StudentAdmissionRPA" IdOrUrl="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" InputMode="UrlOrId">
+                  <ugam:DriveItemArgument.ParentIdFullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.ParentIdFullPathHint>
+                </ugam:DriveItemArgument>
+              </uga:ReadRangeConnections.Item>
+              <uga:ReadRangeConnections.RangeMetadata>
+                <ugsm:RangeMetadataSlim ColumnStart="1" RangeType="Range" />
+              </uga:ReadRangeConnections.RangeMetadata>
+              <uga:ReadRangeConnections.Result>
+                <OutArgument x:TypeArguments="sd:DataTable">
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_31">dtExistingResults</CSharpReference>
+                </OutArgument>
+              </uga:ReadRangeConnections.Result>
+            </uga:ReadRangeConnections>
+            <Assign DisplayName="04 | Create DataTable for New Application Results" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_MainDedup_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="sd:DataTable">
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">dtNewResults</CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="sd:DataTable">
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">dtResults.Clone()</CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="05 | For Each Result - Check Submission ID" sap:VirtualizedContainerService.HintSize="452,561" sap2010:WorkflowViewState.IdRef="ForEachRow_MainDedup_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Check Whether Application Already Exists" sap:VirtualizedContainerService.HintSize="450,379" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If DisplayName="06 | Submission ID Not Previously Saved?" sap:VirtualizedContainerService.HintSize="416,319" sap2010:WorkflowViewState.IdRef="If_MainDedup_1">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_69">!string.IsNullOrWhiteSpace(CurrentRow["Submission ID"].ToString()) &amp;&amp; !string.Equals(CurrentRow["Submission ID"].ToString().Trim(), "Submission ID", StringComparison.OrdinalIgnoreCase) &amp;&amp; (dtExistingResults == null || !dtExistingResults.Columns.Contains("Submission ID") || !dtExistingResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))) &amp;&amp; !dtNewResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))</CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <Assign DisplayName="07 | Add Only New Application Result" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="Assign_MainDedup_2">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="sd:DataRow">
+                              <CSharpReference x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">newResultRow</CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="sd:DataRow">
+                              <CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_70">dtNewResults.Rows.Add(CurrentRow.ItemArray)</CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+              <ui:ForEachRow.DataTable>
+                <InArgument x:TypeArguments="sd:DataTable">
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">dtResults</CSharpValue>
+                </InArgument>
+              </ui:ForEachRow.DataTable>
+            </ui:ForEachRow>
+            <If DisplayName="08 | New Admission Results Available?" sap:VirtualizedContainerService.HintSize="452,485" sap2010:WorkflowViewState.IdRef="If_MainDedup_2">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_71">dtNewResults != null &amp;&amp; dtNewResults.Rows.Count &gt; 0</CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <uga:WriteRangeConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="09 | Append Only New Admission Results" sap:VirtualizedContainerService.HintSize="334,300" sap2010:WorkflowViewState.IdRef="WriteRangeConnections_1" IncludeHeaders="False" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="AdmissionResults" RowPosition="0" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
+                  <uga:WriteRangeConnections.FileIdBackup>
+                    <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID1" StoredValue="UrlOrId">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                          <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
+                          <InArgument x:TypeArguments="x:String" />
+                          <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                        </scg:List>
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </uga:WriteRangeConnections.FileIdBackup>
+                  <uga:WriteRangeConnections.Item>
+                    <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID1}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="eyJPQXV0aDJBcHBEYXRhIjp7IkNsaWVudElkIjoiIiwiQ2xpZW50U2VjcmV0IjoiIn0sIlNjb3BlcyI6WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2RyaXZlIl0sIlVzZXJJZCI6IkUxQ0I1N0ZBIiwiRW1haWxBZGRyZXNzIjpudWxsLCJBY2NvdW50IjoiY2FsdmluMjkwODAxQGdtYWlsLmNvbSIsIlN0b3JhZ2UiOnsiTG9jYWxGb2xkZXIiOiJHU3VpdGUiLCJPcmNoZXN0cmF0b3JGb2xkZXIiOiIiLCJMb2NhdGlvbiI6MH19" FullPathHint="My Drive/StudentAdmissionRPA" IdOrUrl="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" InputMode="UrlOrId">
+                      <ugam:DriveItemArgument.ParentIdFullPathHint>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </ugam:DriveItemArgument.ParentIdFullPathHint>
+                    </ugam:DriveItemArgument>
+                  </uga:WriteRangeConnections.Item>
+                  <uga:WriteRangeConnections.RangeWriteModeBackup>
+                    <usau:BackupSlot x:TypeArguments="ugase:RangeWriteMode" StoredValue="Append">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:List x:TypeArguments="x:Object" x:Key="Overwrite" Capacity="0" />
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </uga:WriteRangeConnections.RangeWriteModeBackup>
+                  <uga:WriteRangeConnections.Source>
+                    <InArgument x:TypeArguments="sd:DataTable">
+                      <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">dtNewResults</CSharpValue>
+                    </InArgument>
+                  </uga:WriteRangeConnections.Source>
+                </uga:WriteRangeConnections>
+              </If.Then>
+            </If>
+            <uga:ReadRangeConnections x:TypeArguments="sd:DataTable" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="10 | Read Existing NotificationLog" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_NotificationLog_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="NotificationLog!A1:H10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
+              <uga:ReadRangeConnections.FileIdBackup>
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID2" StoredValue="UrlOrId">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                      <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
+                      <InArgument x:TypeArguments="x:String" />
+                      <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                    </scg:List>
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:ReadRangeConnections.FileIdBackup>
+              <uga:ReadRangeConnections.Item>
+                <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID2}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="eyJPQXV0aDJBcHBEYXRhIjp7IkNsaWVudElkIjoiIiwiQ2xpZW50U2VjcmV0IjoiIn0sIlNjb3BlcyI6WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2RyaXZlIl0sIlVzZXJJZCI6IkUxQ0I1N0ZBIiwiRW1haWxBZGRyZXNzIjpudWxsLCJBY2NvdW50IjoiY2FsdmluMjkwODAxQGdtYWlsLmNvbSIsIlN0b3JhZ2UiOnsiTG9jYWxGb2xkZXIiOiJHU3VpdGUiLCJPcmNoZXN0cmF0b3JGb2xkZXIiOiIiLCJMb2NhdGlvbiI6MH19" FullPathHint="My Drive/StudentAdmissionRPA" IdOrUrl="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" InputMode="UrlOrId">
+                  <ugam:DriveItemArgument.ParentIdFullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.ParentIdFullPathHint>
+                </ugam:DriveItemArgument>
+              </uga:ReadRangeConnections.Item>
+              <uga:ReadRangeConnections.RangeMetadata>
+                <ugsm:RangeMetadataSlim ColumnStart="1" RangeType="Range" />
+              </uga:ReadRangeConnections.RangeMetadata>
+              <uga:ReadRangeConnections.Result>
+                <OutArgument x:TypeArguments="sd:DataTable">
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">dtExistingNotifications</CSharpReference>
+                </OutArgument>
+              </uga:ReadRangeConnections.Result>
+            </uga:ReadRangeConnections>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="11 | Send Notifications for Eligible Applicants" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_Notifications_1" UnSafe="False" WorkflowFileName="SendNotifications.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtResults">
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_72">dtResults</CSharpValue>
+                </InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtExistingNotifications">
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">dtExistingNotifications</CSharpValue>
+                </InArgument>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="in_EnableSending">True</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TestRecipient">
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_75">""</CSharpValue>
+                </InArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtNotifications">
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_35">dtNewNotifications</CSharpReference>
+                </OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <If DisplayName="12 | New Notification Records Available?" sap:VirtualizedContainerService.HintSize="452,1020" sap2010:WorkflowViewState.IdRef="If_NotificationRows_1">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_76">dtNewNotifications != null &amp;&amp; dtNewNotifications.Rows.Count &gt; 0</CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="YES | 06 | Append Notification History" sap:VirtualizedContainerService.HintSize="450,866" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If DisplayName="14 | NotificationLog Has Existing Records?" sap:VirtualizedContainerService.HintSize="416,806" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">dtExistingNotifications != null &amp;&amp; dtExistingNotifications.Columns.Contains("Submission ID") &amp;&amp; dtExistingNotifications.Columns.Contains("Notification Status")</CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <uga:WriteRangeConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="15 | Append NotificationLog Without Repeating Headers" sap:VirtualizedContainerService.HintSize="335,300" sap2010:WorkflowViewState.IdRef="WriteRangeConnections_Notifications_1" IncludeHeaders="False" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="NotificationLog" RowPosition="0" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
+                        <uga:WriteRangeConnections.FileIdBackup>
+                          <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID3" StoredValue="UrlOrId">
+                            <usau:BackupSlot.BackupValues>
+                              <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                                <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
+                                <InArgument x:TypeArguments="x:String" />
+                                <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                              </scg:List>
+                            </usau:BackupSlot.BackupValues>
+                          </usau:BackupSlot>
+                        </uga:WriteRangeConnections.FileIdBackup>
+                        <uga:WriteRangeConnections.Item>
+                          <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID3}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="eyJPQXV0aDJBcHBEYXRhIjp7IkNsaWVudElkIjoiIiwiQ2xpZW50U2VjcmV0IjoiIn0sIlNjb3BlcyI6WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2RyaXZlIl0sIlVzZXJJZCI6IkUxQ0I1N0ZBIiwiRW1haWxBZGRyZXNzIjpudWxsLCJBY2NvdW50IjoiY2FsdmluMjkwODAxQGdtYWlsLmNvbSIsIlN0b3JhZ2UiOnsiTG9jYWxGb2xkZXIiOiJHU3VpdGUiLCJPcmNoZXN0cmF0b3JGb2xkZXIiOiIiLCJMb2NhdGlvbiI6MH19" FullPathHint="My Drive/StudentAdmissionRPA" IdOrUrl="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" InputMode="UrlOrId">
+                            <ugam:DriveItemArgument.ParentIdFullPathHint>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ugam:DriveItemArgument.ParentIdFullPathHint>
+                          </ugam:DriveItemArgument>
+                        </uga:WriteRangeConnections.Item>
+                        <uga:WriteRangeConnections.RangeWriteModeBackup>
+                          <usau:BackupSlot x:TypeArguments="ugase:RangeWriteMode" StoredValue="Append">
+                            <usau:BackupSlot.BackupValues>
+                              <scg:List x:TypeArguments="x:Object" x:Key="Overwrite" Capacity="0" />
+                            </usau:BackupSlot.BackupValues>
+                          </usau:BackupSlot>
+                        </uga:WriteRangeConnections.RangeWriteModeBackup>
+                        <uga:WriteRangeConnections.Source>
+                          <InArgument x:TypeArguments="sd:DataTable">
+                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_78">dtNewNotifications</CSharpValue>
+                          </InArgument>
+                        </uga:WriteRangeConnections.Source>
+                      </uga:WriteRangeConnections>
+                    </If.Then>
+                    <If.Else>
+                      <uga:WriteRangeConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="16 | Append NotificationLog Without Repeating Headers" sap:VirtualizedContainerService.HintSize="335,300" sap2010:WorkflowViewState.IdRef="WriteRangeConnections_Notifications_2" IncludeHeaders="False" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="NotificationLog" RowPosition="0" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
+                        <uga:WriteRangeConnections.FileIdBackup>
+                          <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID4" StoredValue="UrlOrId">
+                            <usau:BackupSlot.BackupValues>
+                              <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                                <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
+                                <InArgument x:TypeArguments="x:String" />
+                                <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                              </scg:List>
+                            </usau:BackupSlot.BackupValues>
+                          </usau:BackupSlot>
+                        </uga:WriteRangeConnections.FileIdBackup>
+                        <uga:WriteRangeConnections.Item>
+                          <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID4}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="eyJPQXV0aDJBcHBEYXRhIjp7IkNsaWVudElkIjoiIiwiQ2xpZW50U2VjcmV0IjoiIn0sIlNjb3BlcyI6WyJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL2RyaXZlIl0sIlVzZXJJZCI6IkUxQ0I1N0ZBIiwiRW1haWxBZGRyZXNzIjpudWxsLCJBY2NvdW50IjoiY2FsdmluMjkwODAxQGdtYWlsLmNvbSIsIlN0b3JhZ2UiOnsiTG9jYWxGb2xkZXIiOiJHU3VpdGUiLCJPcmNoZXN0cmF0b3JGb2xkZXIiOiIiLCJMb2NhdGlvbiI6MH19" FullPathHint="My Drive/StudentAdmissionRPA" IdOrUrl="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" InputMode="UrlOrId">
+                            <ugam:DriveItemArgument.ParentIdFullPathHint>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ugam:DriveItemArgument.ParentIdFullPathHint>
+                          </ugam:DriveItemArgument>
+                        </uga:WriteRangeConnections.Item>
+                        <uga:WriteRangeConnections.RangeWriteModeBackup>
+                          <usau:BackupSlot x:TypeArguments="ugase:RangeWriteMode" StoredValue="Append">
+                            <usau:BackupSlot.BackupValues>
+                              <scg:List x:TypeArguments="x:Object" x:Key="Overwrite" Capacity="0" />
+                            </usau:BackupSlot.BackupValues>
+                          </usau:BackupSlot>
+                        </uga:WriteRangeConnections.RangeWriteModeBackup>
+                        <uga:WriteRangeConnections.Source>
+                          <InArgument x:TypeArguments="sd:DataTable">
+                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">dtNewNotifications</CSharpValue>
+                          </InArgument>
+                        </uga:WriteRangeConnections.Source>
+                      </uga:WriteRangeConnections>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </uga:GSuiteApplicationScope.Body>
+      <uga:GSuiteApplicationScope.BucketFullPathBackup>
+        <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="Browse">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="ugade:EDriveItemMode, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </uga:GSuiteApplicationScope.BucketFullPathBackup>
+      <uga:GSuiteApplicationScope.RuntimeItemFullPathBackup>
+        <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="{x:Null}">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="ugade:EDriveItemMode, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </uga:GSuiteApplicationScope.RuntimeItemFullPathBackup>
+    </uga:GSuiteApplicationScope>
+    <ui:LogMessage DisplayName="10 | Log Student Admission Processing Completed" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info">
       <ui:LogMessage.Message>
         <InArgument x:TypeArguments="x:Object">
           <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_65">"Eligibility workflow completed. Total students: " + dtResults.Rows.Count.ToString()</CSharpValue>
