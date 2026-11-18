@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugsm="clr-namespace:UiPath.GSuite.Sheets.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Data;assembly=Studio.Generated.TypedDataTable4" xmlns:sd2="clr-namespace:System.Data;assembly=Studio.Generated.TypedDataTable5" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugsm="clr-namespace:UiPath.GSuite.Sheets.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -65,6 +65,8 @@
       <x:String>UiPath.GSuite.Drive.Models</x:String>
       <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
       <x:String>UiPath.GSuite.Activities.Models</x:String>
+      <x:String>UiPath.GSuite.Sheets.Enums</x:String>
+      <x:String>UiPath.GSuite.Sheets.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -154,6 +156,8 @@
       <AssemblyReference>Studio.Generated.TypedDataTable3</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable4</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable5</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -162,21 +166,34 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1672,3713" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1672,4291" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtResults" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtStudents" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtExistingNotifications" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtNewNotifications" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtExistingResults" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtNewResults" />
       <Variable x:TypeArguments="sd:DataRow" Name="newResultRow" />
+      <Variable x:TypeArguments="x:String" Name="automationStartTime" />
+      <Variable x:TypeArguments="sd1:DataTable4" Name="dtExistingResults" />
+      <Variable x:TypeArguments="sd2:DataTable5" Name="dtExistingNotifications" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="00 | Record Automation Start Time" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">automationStartTime</CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">System.DateTime.Now.ToString("o")</CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ReadApplicationsAndCheckDocuments - Invoke Workflow File (ReadApplicationsAndCheckDocuments.xaml)" sap:VirtualizedContainerService.HintSize="488,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReadApplicationsAndCheckDocuments.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtDocuments" />
@@ -218,14 +235,17 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uga:ReadRangeConnections x:TypeArguments="sd:DataTable" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="03 | Read Existing AdmissionResults" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_ExistingResults_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="AdmissionResults!A1:S10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
+            <uga:ReadRangeConnections x:TypeArguments="sd1:DataTable4" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="03 | Read Existing AdmissionResults" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_ExistingResults_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="AdmissionResults!A1:S10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
               <uga:ReadRangeConnections.FileIdBackup>
-                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UrlOrId">
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="Browse">
                   <usau:BackupSlot.BackupValues>
                     <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
-                      <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
-                      <InArgument x:TypeArguments="x:String" />
-                      <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                      <x:Null />
+                      <x:Null />
+                      <x:Null />
+                    </scg:List>
+                    <scg:List x:TypeArguments="x:Object" x:Key="UrlOrId" Capacity="1">
+                      <x:Null />
                     </scg:List>
                   </usau:BackupSlot.BackupValues>
                 </usau:BackupSlot>
@@ -243,20 +263,20 @@
                 <ugsm:RangeMetadataSlim ColumnStart="1" RangeType="Range" />
               </uga:ReadRangeConnections.RangeMetadata>
               <uga:ReadRangeConnections.Result>
-                <OutArgument x:TypeArguments="sd:DataTable">
-                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_31">dtExistingResults</CSharpReference>
+                <OutArgument x:TypeArguments="sd1:DataTable4">
+                  <CSharpReference x:TypeArguments="sd1:DataTable4" sap2010:WorkflowViewState.IdRef="CSharpReference`1_37">dtExistingResults</CSharpReference>
                 </OutArgument>
               </uga:ReadRangeConnections.Result>
             </uga:ReadRangeConnections>
             <Assign DisplayName="04 | Create DataTable for New Application Results" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_MainDedup_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="sd:DataTable">
-                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">dtNewResults</CSharpReference>
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">dtNewResults</CSharpReference>
                 </OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="sd:DataTable">
-                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">dtResults.Clone()</CSharpValue>
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">dtResults.Clone()</CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>
@@ -275,19 +295,19 @@
                     <If DisplayName="06 | Submission ID Not Previously Saved?" sap:VirtualizedContainerService.HintSize="416,319" sap2010:WorkflowViewState.IdRef="If_MainDedup_1">
                       <If.Condition>
                         <InArgument x:TypeArguments="x:Boolean">
-                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_69">!string.IsNullOrWhiteSpace(CurrentRow["Submission ID"].ToString()) &amp;&amp; !string.Equals(CurrentRow["Submission ID"].ToString().Trim(), "Submission ID", StringComparison.OrdinalIgnoreCase) &amp;&amp; (dtExistingResults == null || !dtExistingResults.Columns.Contains("Submission ID") || !dtExistingResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))) &amp;&amp; !dtNewResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))</CSharpValue>
+                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_84">!string.IsNullOrWhiteSpace(CurrentRow["Submission ID"].ToString()) &amp;&amp; !string.Equals(CurrentRow["Submission ID"].ToString().Trim(), "Submission ID", StringComparison.OrdinalIgnoreCase) &amp;&amp; (dtExistingResults == null || !dtExistingResults.Columns.Cast&lt;System.Data.DataColumn&gt;().Any(c =&gt; c.ColumnName == "Submission ID") || !dtExistingResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))) &amp;&amp; !dtNewResults.AsEnumerable().Any(r =&gt; string.Equals( r["Submission ID"].ToString().Trim(), CurrentRow["Submission ID"].ToString().Trim(), StringComparison.OrdinalIgnoreCase))</CSharpValue>
                         </InArgument>
                       </If.Condition>
                       <If.Then>
                         <Assign DisplayName="07 | Add Only New Application Result" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="Assign_MainDedup_2">
                           <Assign.To>
                             <OutArgument x:TypeArguments="sd:DataRow">
-                              <CSharpReference x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">newResultRow</CSharpReference>
+                              <CSharpReference x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">newResultRow</CSharpReference>
                             </OutArgument>
                           </Assign.To>
                           <Assign.Value>
                             <InArgument x:TypeArguments="sd:DataRow">
-                              <CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_70">dtNewResults.Rows.Add(CurrentRow.ItemArray)</CSharpValue>
+                              <CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_71">dtNewResults.Rows.Add(CurrentRow.ItemArray)</CSharpValue>
                             </InArgument>
                           </Assign.Value>
                         </Assign>
@@ -298,14 +318,14 @@
               </ui:ForEachRow.Body>
               <ui:ForEachRow.DataTable>
                 <InArgument x:TypeArguments="sd:DataTable">
-                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">dtResults</CSharpValue>
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_69">dtResults</CSharpValue>
                 </InArgument>
               </ui:ForEachRow.DataTable>
             </ui:ForEachRow>
             <If DisplayName="08 | New Admission Results Available?" sap:VirtualizedContainerService.HintSize="452,485" sap2010:WorkflowViewState.IdRef="If_MainDedup_2">
               <If.Condition>
                 <InArgument x:TypeArguments="x:Boolean">
-                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_71">dtNewResults != null &amp;&amp; dtNewResults.Rows.Count &gt; 0</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_72">dtNewResults != null &amp;&amp; dtNewResults.Rows.Count &gt; 0</CSharpValue>
                 </InArgument>
               </If.Condition>
               <If.Then>
@@ -345,14 +365,17 @@
                 </uga:WriteRangeConnections>
               </If.Then>
             </If>
-            <uga:ReadRangeConnections x:TypeArguments="sd:DataTable" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="10 | Read Existing NotificationLog" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_NotificationLog_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="NotificationLog!A1:H10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
+            <uga:ReadRangeConnections x:TypeArguments="sd2:DataTable5" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="10 | Read Existing NotificationLog" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_NotificationLog_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="NotificationLog!A1:H10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
               <uga:ReadRangeConnections.FileIdBackup>
                 <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID2" StoredValue="UrlOrId">
                   <usau:BackupSlot.BackupValues>
                     <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
-                      <InArgument x:TypeArguments="x:String">https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=drivesdk</InArgument>
-                      <InArgument x:TypeArguments="x:String" />
-                      <InArgument x:TypeArguments="x:String">StudentAdmissionRPA</InArgument>
+                      <x:Null />
+                      <x:Null />
+                      <x:Null />
+                    </scg:List>
+                    <scg:List x:TypeArguments="x:Object" x:Key="UrlOrId" Capacity="1">
+                      <x:Null />
                     </scg:List>
                   </usau:BackupSlot.BackupValues>
                 </usau:BackupSlot>
@@ -370,32 +393,32 @@
                 <ugsm:RangeMetadataSlim ColumnStart="1" RangeType="Range" />
               </uga:ReadRangeConnections.RangeMetadata>
               <uga:ReadRangeConnections.Result>
-                <OutArgument x:TypeArguments="sd:DataTable">
-                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">dtExistingNotifications</CSharpReference>
+                <OutArgument x:TypeArguments="sd2:DataTable5">
+                  <CSharpReference x:TypeArguments="sd2:DataTable5" sap2010:WorkflowViewState.IdRef="CSharpReference`1_38">dtExistingNotifications</CSharpReference>
                 </OutArgument>
               </uga:ReadRangeConnections.Result>
             </uga:ReadRangeConnections>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="11 | Send Notifications for Eligible Applicants" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_Notifications_1" UnSafe="False" WorkflowFileName="SendNotifications.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtResults">
-                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_72">dtResults</CSharpValue>
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">dtResults</CSharpValue>
                 </InArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtExistingNotifications">
-                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">dtExistingNotifications</CSharpValue>
+                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_74">dtExistingNotifications</CSharpValue>
                 </InArgument>
                 <InArgument x:TypeArguments="x:Boolean" x:Key="in_EnableSending">True</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="in_TestRecipient">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_75">""</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_76">""</CSharpValue>
                 </InArgument>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtNotifications">
-                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_35">dtNewNotifications</CSharpReference>
+                  <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_36">dtNewNotifications</CSharpReference>
                 </OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <If DisplayName="12 | New Notification Records Available?" sap:VirtualizedContainerService.HintSize="452,1020" sap2010:WorkflowViewState.IdRef="If_NotificationRows_1">
               <If.Condition>
                 <InArgument x:TypeArguments="x:Boolean">
-                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_76">dtNewNotifications != null &amp;&amp; dtNewNotifications.Rows.Count &gt; 0</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">dtNewNotifications != null &amp;&amp; dtNewNotifications.Rows.Count &gt; 0</CSharpValue>
                 </InArgument>
               </If.Condition>
               <If.Then>
@@ -408,7 +431,7 @@
                   <If DisplayName="14 | NotificationLog Has Existing Records?" sap:VirtualizedContainerService.HintSize="416,806" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Condition>
                       <InArgument x:TypeArguments="x:Boolean">
-                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">dtExistingNotifications != null &amp;&amp; dtExistingNotifications.Columns.Contains("Submission ID") &amp;&amp; dtExistingNotifications.Columns.Contains("Notification Status")</CSharpValue>
+                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_85">dtExistingNotifications != null &amp;&amp; dtExistingNotifications.Columns.Cast&lt;System.Data.DataColumn&gt;().Any(c =&gt; c.ColumnName == "Submission ID") &amp;&amp; dtExistingNotifications.Columns.Cast&lt;System.Data.DataColumn&gt;().Any(c =&gt; c.ColumnName == "Notification Status")</CSharpValue>
                       </InArgument>
                     </If.Condition>
                     <If.Then>
@@ -442,7 +465,7 @@
                         </uga:WriteRangeConnections.RangeWriteModeBackup>
                         <uga:WriteRangeConnections.Source>
                           <InArgument x:TypeArguments="sd:DataTable">
-                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_78">dtNewNotifications</CSharpValue>
+                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">dtNewNotifications</CSharpValue>
                           </InArgument>
                         </uga:WriteRangeConnections.Source>
                       </uga:WriteRangeConnections>
@@ -478,7 +501,7 @@
                         </uga:WriteRangeConnections.RangeWriteModeBackup>
                         <uga:WriteRangeConnections.Source>
                           <InArgument x:TypeArguments="sd:DataTable">
-                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">dtNewNotifications</CSharpValue>
+                            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_80">dtNewNotifications</CSharpValue>
                           </InArgument>
                         </uga:WriteRangeConnections.Source>
                       </uga:WriteRangeConnections>
@@ -505,12 +528,25 @@
         </usau:BackupSlot>
       </uga:GSuiteApplicationScope.RuntimeItemFullPathBackup>
     </uga:GSuiteApplicationScope>
-    <ui:LogMessage DisplayName="10 | Log Student Admission Processing Completed" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info">
+    <ui:LogMessage DisplayName="10 | Log Student Admission Processing Completed" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info">
       <ui:LogMessage.Message>
         <InArgument x:TypeArguments="x:Object">
           <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_65">"Eligibility workflow completed. Total students: " + dtResults.Rows.Count.ToString()</CSharpValue>
         </InArgument>
       </ui:LogMessage.Message>
     </ui:LogMessage>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="// Append one privacy-conscious summary for each completed run.&#xA;// Keep the full OCR text and student personal data out of this log.&#xA;var start = System.DateTime.Parse(startIso,&#xA;    System.Globalization.CultureInfo.InvariantCulture,&#xA;    System.Globalization.DateTimeStyles.RoundtripKind);&#xA;var end = System.DateTime.Now;&#xA;var elapsed = (end - start).TotalSeconds;&#xA;int total = results == null ? 0 : results.Rows.Count;&#xA;int eligible = 0, rejected = 0, manualReview = 0, incomplete = 0;&#xA;if (results != null &amp;&amp; results.Columns.Contains(&quot;Eligibility Status&quot;))&#xA;{&#xA;    foreach (System.Data.DataRow r in results.Rows)&#xA;    {&#xA;        string s = r.IsNull(&quot;Eligibility Status&quot;) ? &quot;&quot; : r[&quot;Eligibility Status&quot;].ToString().Trim();&#xA;        if (s.Equals(&quot;Eligible&quot;, System.StringComparison.OrdinalIgnoreCase)) eligible++;&#xA;        else if (s.Equals(&quot;Rejected&quot;, System.StringComparison.OrdinalIgnoreCase)) rejected++;&#xA;        else if (s.Equals(&quot;Manual Review&quot;, System.StringComparison.OrdinalIgnoreCase)) manualReview++;&#xA;        else if (s.Equals(&quot;Incomplete&quot;, System.StringComparison.OrdinalIgnoreCase)&#xA;              || s.Equals(&quot;Pending Documents&quot;, System.StringComparison.OrdinalIgnoreCase)) incomplete++;&#xA;    }&#xA;}&#xA;int sent = 0, failed = 0, skipped = 0, test = 0;&#xA;if (notifications != null &amp;&amp; notifications.Columns.Contains(&quot;Notification Status&quot;))&#xA;{&#xA;    foreach (System.Data.DataRow r in notifications.Rows)&#xA;    {&#xA;        string s = r.IsNull(&quot;Notification Status&quot;) ? &quot;&quot; : r[&quot;Notification Status&quot;].ToString().Trim();&#xA;        if (s.Equals(&quot;Sent&quot;, System.StringComparison.OrdinalIgnoreCase)) sent++;&#xA;        else if (s.IndexOf(&quot;Fail&quot;, System.StringComparison.OrdinalIgnoreCase) &gt;= 0&#xA;              || s.IndexOf(&quot;Error&quot;, System.StringComparison.OrdinalIgnoreCase) &gt;= 0) failed++;&#xA;        else if (s.IndexOf(&quot;Test Mode&quot;, System.StringComparison.OrdinalIgnoreCase) &gt;= 0) test++;&#xA;        else skipped++;&#xA;    }&#xA;}&#xA;string logFolder = System.IO.Path.Combine(System.Environment.CurrentDirectory, &quot;Logs&quot;);&#xA;System.IO.Directory.CreateDirectory(logFolder);&#xA;string logFile = System.IO.Path.Combine(logFolder, &quot;AutomationLog.txt&quot;);&#xA;var log = new System.Text.StringBuilder();&#xA;log.AppendLine(&quot;========================================&quot;);&#xA;log.AppendLine(&quot;STUDENT ADMISSION AUTOMATION - RUN SUMMARY&quot;);&#xA;log.AppendLine(&quot;========================================&quot;);&#xA;log.AppendLine(&quot;Started: &quot; + start.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;));&#xA;log.AppendLine(&quot;Finished: &quot; + end.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;));&#xA;log.AppendLine(&quot;Duration (seconds): &quot; + elapsed.ToString(&quot;F2&quot;, System.Globalization.CultureInfo.InvariantCulture));&#xA;log.AppendLine(&quot;Applications Evaluated: &quot; + total);&#xA;log.AppendLine(&quot;Eligible: &quot; + eligible);&#xA;log.AppendLine(&quot;Rejected: &quot; + rejected);&#xA;log.AppendLine(&quot;Manual Review: &quot; + manualReview);&#xA;log.AppendLine(&quot;Incomplete / Pending Documents: &quot; + incomplete);&#xA;log.AppendLine(&quot;New Notification Records: &quot; + (notifications == null ? 0 : notifications.Rows.Count));&#xA;log.AppendLine(&quot;Emails Sent: &quot; + sent);&#xA;log.AppendLine(&quot;Emails Failed: &quot; + failed);&#xA;log.AppendLine(&quot;Emails Skipped / Other: &quot; + skipped);&#xA;log.AppendLine(&quot;Test Mode - Not Sent: &quot; + test);&#xA;log.AppendLine(&quot;Execution Status: Completed&quot;);&#xA;log.AppendLine(&quot;========================================&quot;);&#xA;log.AppendLine();&#xA;System.IO.File.AppendAllText(logFile, log.ToString(), new System.Text.UTF8Encoding(false));" DisplayName="12 | Append Execution Summary to AutomationLog.txt" sap:VirtualizedContainerService.HintSize="488,394" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="startIso">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_81">automationStartTime</CSharpValue>
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="results">
+          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_82">dtResults</CSharpValue>
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="notifications">
+          <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_83">dtNewNotifications</CSharpValue>
+        </InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
   </Sequence>
 </Activity>
