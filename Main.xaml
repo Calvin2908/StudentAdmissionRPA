@@ -237,7 +237,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <uga:ReadRangeConnections x:TypeArguments="sd1:DataTable4" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ColumnNames="{x:Array Type=x:String}" ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" RangeInformation="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" AuthScopesInvalid="False" DisplayName="03 | Read Existing AdmissionResults" HasHeaders="True" sap:VirtualizedContainerService.HintSize="452,228" sap2010:WorkflowViewState.IdRef="ReadRangeConnections_ExistingResults_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="https://docs.google.com/spreadsheets/d/1t-X9OdeNjlkv3qujGiJZ1P6om5ra54MqtEX7ewSQXUE/edit?usp=sharing" Range="AdmissionResults!A1:S10000" ReadAs="Values" UseConnectionService="False" WorkingWithTemplateSpreadsheet="False">
               <uga:ReadRangeConnections.FileIdBackup>
-                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="Browse">
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UrlOrId">
                   <usau:BackupSlot.BackupValues>
                     <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
                       <x:Null />
